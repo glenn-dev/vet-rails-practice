@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pets</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class= "text-center">Name</th>
+      <th scope="col" class= "text-center">Dueño</th>
+      <th scope="col" class= "text-center">Visitas</th>
+      <th scope="col" class= "text-center">Descripcion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pets.each do |pet| %>
+      <tr>
+        <td class= "text-center"><%= link_to "#{pet.name}", pet, class:"btn btn-outline-info btn-sm btn-block"%></td>
+        <td class= "text-center"><%= pet.client.name if pet.client %></td>
+        <td class= "text-center"><%= pet.records.count %></td>
+        <td class= "text-center">
+            <% pet.records.each do |record| %>
+              <%= "#{record.description} |" %>
+            <% end %>
+        </td>
+        <td><%= link_to "Show Record", record_path(pet), class:"btn btn-outline-success btn-sm btn-block" %></td>
+        <td><%= link_to 'Delete Pet', pet, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm btn-block" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pet', new_pet_path, class:"btn btn-outline-primary btn-lg" %>

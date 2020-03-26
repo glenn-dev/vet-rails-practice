@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @client.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @client.address %>
+</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Pets name</th>
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @client.name %></td>
+        <td><%= @client.pets.count %></td>
+        <td><% @client.pets.each do |pet| %>
+            <%= "#{pet.name}. " %>
+          <% end %>
+        </td>
+        <td><%= @client.address %></td>
+      </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<%= link_to 'Back', clients_path %>

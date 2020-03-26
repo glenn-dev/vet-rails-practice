@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Records</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class= "text-center">Creation date</th>
+      <th scope="col" class= "text-center">Pet</th>
+      <th scope="col" class= "text-center">Weight (kg)</th>
+      <th scope="col" class= "text-center">Height (cm)</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @records.each do |record| %>
+      <tr>
+        <td class= "text-center"><%= link_to "#{record.description}", record, class:"btn btn-outline-info btn-sm btn-block" %></td>
+        <td class= "text-center"><%= record.pet.name %></td>
+        <td class= "text-center"><%= record.weight %></td>
+        <td class= "text-center"><%= record.height %></td>
+        <td><%= link_to 'Delete record', record, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm btn-block" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Record', new_record_path, class:"btn btn-outline-primary btn-lg" %>
